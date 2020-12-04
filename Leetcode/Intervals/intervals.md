@@ -44,7 +44,7 @@ class Solution:
         if overlapping:
             merged[0]=min(newInterval[0],overlapping[0][0])
             merged[1]=max(newInterval[1],overlapping[-1][1])
-        return before+[merged]+aftered
+        return before+[merged]+after
 ```
 
 ## Non-overlapping Intervals
@@ -64,6 +64,6 @@ class Solution:
                 removed+=1
             else:
                 previous_right=interval[1]
-        return removedd
+        return removed
 ```
 
