@@ -59,7 +59,7 @@ def getTriangles(lines):
 def main():
     in_file=File(sys.argv[1])
     lines=in_file.getLines()
-    max_area=-1
+    max_area= -1
     coords_max=[]
     triangles=getTriangles(lines)
     for triangle in triangles:
