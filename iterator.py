@@ -100,7 +100,7 @@ def main():
     lst.deleteAtIndex(1)
     printer = Printer(lst.head)
     for i in printer:
-        print(i, ' ')
+        print(i)
     print("------")
     print(next(lst))
     print(next(lst))
