@@ -58,6 +58,16 @@ def send_error_message(pullrequest):
     response = requests.post(pr + 'issues/' + str(pullrequest['number']) + '/comments', headers=get_headers(),
                              data=json.dumps(body))
 
+def check_oldness(pullrequest): #return trie or false, true if old #check data
+  errors=['Prefix should be one of the: {}'.format(', '.join(PREFIX)), 'Group should be one of the: {}'.format(', '.join(GROUP)), 'Action should be one of the: {}'.format(', '.join(ACTION)),
+  'Prefix and group should be separated by hyphen.','There should be prefix, group and action.']
+  result = False
+  request=requests.get('https://api.github.com/repos/croosky/python_au/issues/{}/comments'.format(pullrequest['number']), headers=get_headers()).json()
+  for r in request:
+    for error in errors:
+      if r['body'].find(error):
+        return True
+  return False
 
 def main():
     # file=open('user.txt')
