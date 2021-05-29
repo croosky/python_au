@@ -40,10 +40,15 @@ def plot1(data,resource):
 
 def plot2(data,resource,staff_id):
   filtered_resource = filters(data,resource, 'resource')
-  filtered_staff = filters(filtered_resource, staff_id,'staff_id')
-  sorted_staff = sort_data(filtered_staff)
-  newlist=[{k: v for k, v in dic.items() if k=='date' or k=='count'} for dic in sorted_staff]
-  plotting(newlist,'date','count','staff_id '+str(staff_id))
+  staffs=[]
+  for i in filtered_resource:
+    if not i['staff_id'] in staffs:
+      staffs.append(i['staff_id'])
+      filtered_staff = filters(filtered_resource, i['staff_id'],'staff_id')
+      sorted_staff = sort_data(filtered_staff)
+      newlist=[{k: v for k, v in dic.items() if k=='date' or k=='count'} for dic in sorted_staff]
+      plotting(newlist,'date','count',str(i['staff_id'])+' staff_id ')
+
 
 def main():
   file = open('plot.txt','r')
